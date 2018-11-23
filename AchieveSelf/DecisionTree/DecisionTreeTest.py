@@ -39,3 +39,4 @@ if __name__  == '__main__':
     dataset, labels = dt.createDataSet()
     dt = dt.calcEntropy(dataset) #获取信息熵
     print('计算信息熵：', dt)
+
