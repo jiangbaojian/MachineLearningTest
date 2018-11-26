@@ -124,7 +124,6 @@ class DecisionTree:
                 retDataSet.append(reduceFeatVec)
         return retDataSet
 
-
 if __name__  == '__main__':
     dt = DecisionTree()
     dataset, labels = dt.createDataSet()
