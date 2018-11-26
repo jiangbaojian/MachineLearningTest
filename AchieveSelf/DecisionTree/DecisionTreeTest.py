@@ -83,15 +83,6 @@ class DecisionTree:
                 gain = infor_gain[i]
         return best_brahch, gain
 
-    def majorityCnt(self, classList):
-        classCount = {}
-        for vote in classList:
-            if vote not in classCount.keys():
-                classCount[vote] = 0
-            classCount[vote] += 1
-        sortedClassCount = sorted(classCount.iteritems(),key=operator.itemgetter(1), reverse=True)
-        return sortedClassCount[0][0]
-
     def vote(self, classification):
         classification_count = {}
         for v in classification:
