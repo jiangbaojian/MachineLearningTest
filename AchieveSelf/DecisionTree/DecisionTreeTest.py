@@ -3,6 +3,7 @@
 #__time__:'2018/11/23'
 import numpy as np
 import operator
+import matplotlib.pyplot as plt
 class DecisionTree:
     """
     决策树的练习
@@ -115,14 +116,26 @@ class DecisionTree:
             tree[best_branch_label][value] = self.createTree(sub_dataset, sub_labels)
         return tree
 
-    def splitDataSet(self, dataset, axis, value):
-        retDataSet = []
-        for featVec in dataset:
-            if featVec[axis] ==value:
-                reduceFeatVec = featVec[:axis]
-                reduceFeatVec.extend(featVec[axis+1:])
-                retDataSet.append(reduceFeatVec)
-        return retDataSet
+    def storeTree(self, tree, filename):
+        import pickle
+        fw = open(filename,'wb')
+        pickle.dump(tree, fw)
+        fw.close()
+    def grabTree(self, filename):
+        import pickle
+        with open(filename) as fr:
+            return pickle.load(fr)
+    # def classify(self, tree , labels, testVec):
+    #     firstStr = tree.keys()[0]
+    #     secondDict = tree[firstStr]
+    #     featIndex = labels.index(firstStr)
+    #     for key in secondDict.keys():
+    #         if testVec[featIndex] == key:
+    #             if type(secondDict).__name__ == 'dict':
+    #                 classLabel = self.classify(secondDict[key].featLabels, testVec)
+    #             else:classLabel = secondDict[key]
+    #     return classLabel
+
 
 if __name__  == '__main__':
     dt = DecisionTree()
@@ -135,6 +148,9 @@ if __name__  == '__main__':
     # print(best_branch, gain)
     tree = dt.createTree(dataset, labels)
     print(tree)
+    dt.storeTree(tree, '1.pickle')
+
+
 
 
 
